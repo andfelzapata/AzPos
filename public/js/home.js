@@ -39143,7 +39143,7 @@ var LoginForm = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { type: 'submit', className: 'btn btn-primary' },
+          { type: 'submit', value: 'Login', className: 'btn btn-primary' },
           'Login'
         )
       );
@@ -39170,10 +39170,9 @@ var LoginForm = function (_React$Component) {
       event.preventDefault();
 
       var password = this.state.password;
-
       var username = this.state.username;
 
-      _superagent2.default.post('/login').set('X-CSRF-TOKEN', this.csrfToken).send({ username: username, password: password }).end(function (err, rest) {});
+      _superagent2.default.post('login').set('X-CSRF-TOKEN', this.csrfToken).send({ username: username, password: password }).end(function (err, rest) {});
     }
   }]);
 

@@ -1,10 +1,4 @@
 <?php
 
-
-Route::get('/', function () {
-
-    return view('home');
-
-});
-
-Route::post('login', 'Auth\LoginController@login');
+Route::get('/', 'HomeController@index');
+Route::post('login', 'Auth\AuthController@login');

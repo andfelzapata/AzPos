@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
 
         </div>
 
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" value="Login" className="btn btn-primary">Login</button>
 
       </form>
 
@@ -70,11 +70,10 @@ class LoginForm extends React.Component {
     event.preventDefault();
 
     const password = this.state.password;
-
     const username = this.state.username;
 
     Request
-        .post('/login')
+        .post('login')
         .set('X-CSRF-TOKEN', this.csrfToken)
         .send({username, password})
         .end(function(err, rest) {

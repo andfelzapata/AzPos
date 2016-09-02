@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,600" rel="stylesheet" type="text/css">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" rel="stylesheet" type="text/css">
-    
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
 
         <!-- Styles -->
@@ -43,16 +43,16 @@
             }
 
             .blueSpan {
-                background-color:#35495e;   
-                animation-duration: 2s;     
-                animation-delay: 0s;    
-                
+                background-color:#35495e;
+                animation-duration: 2s;
+                animation-delay: 0s;
+
             }
 
             .greenSpan {
-                background-color:#41b883;        
-                animation-duration: 2s;     
-                animation-delay: 0s;    
+                background-color:#41b883;
+                animation-duration: 2s;
+                animation-delay: 0s;
             }
 
             .site__title {
@@ -108,7 +108,7 @@
                 top: 2em;
                 width: 100%;
             }
-            
+
         </style>
     </head>
     <body>
@@ -116,7 +116,7 @@
         <div class="container-fluid">
 
             <div class="container">
-                        
+
                 <div class="row">
 
                     <div class="col-lg-6">
@@ -126,21 +126,21 @@
                         </div>
 
                         <div>
-                            <span class="blueSpan title-box-1 animated fadeInLeft"></span> <span class="greenSpan title-box-2 animated fadeInRight"></span>                 
-                        </div>
-                        
-                        <div>
-                            <span class="greenSpan title-box-1 animated fadeInRight"></span>  <span class="blueSpan title-box-2 animated fadeInLeft"></span> 
+                            <span class="blueSpan title-box-1 animated fadeInLeft"></span> <span class="greenSpan title-box-2 animated fadeInRight"></span>
                         </div>
 
-                    </div>        
+                        <div>
+                            <span class="greenSpan title-box-1 animated fadeInRight"></span>  <span class="blueSpan title-box-2 animated fadeInLeft"></span>
+                        </div>
+
+                    </div>
 
                     <div class="col-lg-6">
 
                         <div id="loginForm"></div>
-                        
+
                     </div>
-                    
+
 
                 </div>
             </div>
