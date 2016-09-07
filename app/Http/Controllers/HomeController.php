@@ -13,11 +13,11 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
+        $this->middleware('guest');
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application home page.
      *
      * @return \Illuminate\Http\Response
      */

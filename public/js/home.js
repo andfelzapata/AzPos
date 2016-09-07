@@ -39142,6 +39142,19 @@ var LoginForm = function (_React$Component) {
         key: 'render',
         value: function render() {
 
+            var loginErrorStyles = {
+                position: 'absolute',
+                right: 0,
+                left: 0,
+                textAlign: 'center',
+                zIndex: 1
+            };
+
+            var submitButtonStyles = {
+                position: 'relative',
+                zIndex: 2
+            };
+
             return _react2.default.createElement(
                 'form',
                 { onSubmit: this.onSubmitForm },
@@ -39167,12 +39180,12 @@ var LoginForm = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'button',
-                    { type: 'submit', value: 'Login', className: 'btn btn-primary pull-right' },
+                    { type: 'submit', value: 'Login', style: submitButtonStyles, className: 'btn btn-primary pull-right' },
                     'Login'
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'LoginError' },
+                    { className: 'LoginError', style: loginErrorStyles },
                     ' ',
                     this.state.loginError,
                     ' '
@@ -39209,7 +39222,7 @@ var LoginForm = function (_React$Component) {
 
             _superagent2.default.post('login').set('X-CSRF-TOKEN', this.csrfToken).set('Accept', 'application/json').send({ username: username, password: password }).then(function (success) {
 
-                console.log(success);
+                window.location = 'dashboard';
             }, function (error) {
 
                 if (error.status == 422) {

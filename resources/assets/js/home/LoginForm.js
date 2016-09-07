@@ -30,6 +30,19 @@ class LoginForm extends React.Component {
 
     render () {
 
+        let loginErrorStyles = {
+            position: 'absolute',
+            right: 0,
+            left: 0,
+            textAlign: 'center',
+            zIndex: 1
+        }
+
+        let submitButtonStyles = {
+            position: 'relative',
+            zIndex: 2,
+        }
+
         return (
 
           <form onSubmit={this.onSubmitForm}>
@@ -48,9 +61,9 @@ class LoginForm extends React.Component {
 
             </div>
 
-            <button type="submit" value="Login" className="btn btn-primary pull-right">Login</button>
+            <button type="submit" value="Login" style={submitButtonStyles} className="btn btn-primary pull-right">Login</button>
 
-            <div className="LoginError"> {this.state.loginError} </div>
+            <div className="LoginError" style={loginErrorStyles}> {this.state.loginError} </div>
 
           </form>
 
@@ -87,9 +100,10 @@ class LoginForm extends React.Component {
         .set('X-CSRF-TOKEN', this.csrfToken)
         .set('Accept', 'application/json')
         .send({username, password})
+
         .then( (success) => {
 
-            console.log(success);
+            window.location = 'dashboard';
 
         }, (error) => {
 
