@@ -62,7 +62,7 @@ class AuthController extends Controller
             return response(['login' => 'success'], $this->statusCode)->header('Content-Type', 'application/json');
         }
 
-        return response([ $this->getErrorMessage() ], $this->statusCode)
+        return response([ $this->getErrorMessage() ], 401)
             ->header('Content-Type', 'application/json');
 
     }
@@ -98,9 +98,6 @@ class AuthController extends Controller
         if($this->attemptWithEmail($credentials)) {
             return true;
         }
-
-        return response([ $this->getErrorMessage() ], 401)
-            ->header('Content-Type', 'application/json');
     }
 
     /**

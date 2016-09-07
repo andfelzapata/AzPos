@@ -95,6 +95,25 @@ class AuthControllerTest extends TestCase
         $this->makeUserActive();
     }
 
+    public function testLoginFailsWithCorrectUsernameWrongPasswordReturns401Status()
+    {
+        $credentials = ['username' => 'lauraazapataa', 'password' => 'notachance'];
+
+        $response = $this->call('POST', 'login', $credentials);
+
+        $this->assertEquals('401', $response->status());
+    }
+
+    public function testLoginFailsWithCorrectUsernameWrongPasswordReturnsProperText()
+    {
+        $credentials = ['username' => 'lauraazapataa', 'password' => 'notachance'];
+
+        $response = $this->call('POST', 'login', $credentials);
+
+        $this->assertContains("Credentials do not match our records", $response->content());
+    }
+
+
     /**
      * Take first user and make inactive.
      */
