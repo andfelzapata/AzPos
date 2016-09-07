@@ -4,65 +4,75 @@ import Request from 'superagent';
 
 class LoginForm extends React.Component {
 
-  constructor(props) {
-    
-    super(props);
+    constructor(props) {
 
-    this.state = {
+        super(props);
 
-      username: '',
-      
-      password: ''
+        this.state = {
+
+            username: '',
+            usernameValidation: '',
+
+            password: '',
+            passwordValidation: '',
+
+            loginError: '',
+
+        }
+
+        this.csrfToken = document.querySelector('meta[name=csrf-token]').content
+
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onSubmitForm = this.onSubmitForm.bind(this);
 
     }
 
-    this.csrfToken = document.querySelector('meta[name=csrf-token]').content
+    render () {
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
+        return (
 
-  }
+          <form onSubmit={this.onSubmitForm}>
 
-  render () {
+            <div className="form-group">
 
-    return (
+                <input className="form-control" value={this.state.username} onChange={this.onChangeUsername} placeholder="usuario" />
+                <span className="ValidationError">{this.state.usernameValidation}</span>
 
-      <form onSubmit={this.onSubmitForm}>
+            </div>
 
-        <div className="form-group">
+            <div className="form-group">
 
-          <input className="form-control" value={this.state.username} onChange={this.onChangeUsername} placeholder="usuario" />
+                <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} placeholder="contraseña" />
+                <span className="ValidationError">{this.state.passwordValidation}</span>
 
-        </div>
+            </div>
 
-        <div className="form-group">       
+            <button type="submit" value="Login" className="btn btn-primary pull-right">Login</button>
 
-          <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} placeholder="contraseña" />
+            <div className="LoginError"> {this.state.loginError} </div>
 
-        </div>
+          </form>
 
-        <button type="submit" value="Login" className="btn btn-primary">Login</button>
+        );
 
-      </form>
-
-    );
-
-  }
+    }
 
   onChangeUsername(event) {
 
     const username = event.target.value;
+    const usernameValidation = ""
 
-    this.setState({ username });
+    this.setState({ username, usernameValidation });
 
   }
 
   onChangePassword(event) {
 
-    const password = event.target.value;
+      const password = event.target.value;
+      const passwordValidation = "";
 
-    this.setState({ password });
+    this.setState({ password, passwordValidation });
 
   }
 
@@ -75,8 +85,24 @@ class LoginForm extends React.Component {
     Request
         .post('login')
         .set('X-CSRF-TOKEN', this.csrfToken)
+        .set('Accept', 'application/json')
         .send({username, password})
-        .end(function(err, rest) {
+        .then( (success) => {
+
+            console.log(success);
+
+        }, (error) => {
+
+            if(error.status == 422) {
+                _.map(error.response.body, (value, key) => {
+                    this.setState({ [`${key}Validation`]: value });
+                });
+            }
+
+            if(error.status == 401) {
+                let loginError = error.response.body.pop();
+                this.setState({ loginError });
+            }
 
         });
 

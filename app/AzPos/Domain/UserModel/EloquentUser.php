@@ -22,7 +22,7 @@ class EloquentUser extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name', 'username', 'email', 'phone', 'password', 'active'
     ];
 
     /**
@@ -34,8 +34,26 @@ class EloquentUser extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function accountActive()
+    /**
+     * Checks to see if user account is active.
+     *
+     * @param $username
+     *
+     * @return bool
+     */
+    public function accountActive($username)
     {
-        return true;
+        return  $this->where('username', $username)->orWhere('email', $username)->first()->active ? true : false;
+    }
+
+    /**
+     * Checks to see if account exists.
+     * @param $username
+     *
+     * @return bool
+     */
+    public function userNameExists($username)
+    {
+        return  $this->where('username', $username)->orWhere('email', $username)->first() ? true : false;
     }
 }

@@ -39038,7 +39038,15 @@ function request(RequestConstructor, method, url) {
 module.exports = request;
 
 },{}],178:[function(require,module,exports){
-'use strict';
+"use strict";
+
+window.COLORS = {
+    primary: "#337ab7",
+    info: "#5bc0de",
+    success: "#5cb85c",
+    warning: "#f0ad4e",
+    danger: "#d9534f"
+};
 
 window._ = require('lodash');
 
@@ -39078,7 +39086,7 @@ require('./bootstrap');
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -39093,6 +39101,8 @@ var _superagent2 = _interopRequireDefault(_superagent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -39100,83 +39110,123 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var LoginForm = function (_React$Component) {
-  _inherits(LoginForm, _React$Component);
+    _inherits(LoginForm, _React$Component);
 
-  function LoginForm(props) {
-    _classCallCheck(this, LoginForm);
+    function LoginForm(props) {
+        _classCallCheck(this, LoginForm);
 
-    var _this = _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call(this, props));
 
-    _this.state = {
+        _this.state = {
 
-      username: '',
+            username: '',
+            usernameValidation: '',
 
-      password: ''
+            password: '',
+            passwordValidation: '',
 
-    };
+            loginError: ''
 
-    _this.csrfToken = document.querySelector('meta[name=csrf-token]').content;
+        };
 
-    _this.onChangeUsername = _this.onChangeUsername.bind(_this);
-    _this.onChangePassword = _this.onChangePassword.bind(_this);
-    _this.onSubmitForm = _this.onSubmitForm.bind(_this);
+        _this.csrfToken = document.querySelector('meta[name=csrf-token]').content;
 
-    return _this;
-  }
+        _this.onChangeUsername = _this.onChangeUsername.bind(_this);
+        _this.onChangePassword = _this.onChangePassword.bind(_this);
+        _this.onSubmitForm = _this.onSubmitForm.bind(_this);
 
-  _createClass(LoginForm, [{
-    key: 'render',
-    value: function render() {
-
-      return _react2.default.createElement(
-        'form',
-        { onSubmit: this.onSubmitForm },
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group' },
-          _react2.default.createElement('input', { className: 'form-control', value: this.state.username, onChange: this.onChangeUsername, placeholder: 'usuario' })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group' },
-          _react2.default.createElement('input', { type: 'password', className: 'form-control', value: this.state.password, onChange: this.onChangePassword, placeholder: 'contraseña' })
-        ),
-        _react2.default.createElement(
-          'button',
-          { type: 'submit', value: 'Login', className: 'btn btn-primary' },
-          'Login'
-        )
-      );
+        return _this;
     }
-  }, {
-    key: 'onChangeUsername',
-    value: function onChangeUsername(event) {
 
-      var username = event.target.value;
+    _createClass(LoginForm, [{
+        key: 'render',
+        value: function render() {
 
-      this.setState({ username: username });
-    }
-  }, {
-    key: 'onChangePassword',
-    value: function onChangePassword(event) {
+            return _react2.default.createElement(
+                'form',
+                { onSubmit: this.onSubmitForm },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'form-group' },
+                    _react2.default.createElement('input', { className: 'form-control', value: this.state.username, onChange: this.onChangeUsername, placeholder: 'usuario' }),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'ValidationError' },
+                        this.state.usernameValidation
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'form-group' },
+                    _react2.default.createElement('input', { type: 'password', className: 'form-control', value: this.state.password, onChange: this.onChangePassword, placeholder: 'contraseña' }),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'ValidationError' },
+                        this.state.passwordValidation
+                    )
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { type: 'submit', value: 'Login', className: 'btn btn-primary pull-right' },
+                    'Login'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'LoginError' },
+                    ' ',
+                    this.state.loginError,
+                    ' '
+                )
+            );
+        }
+    }, {
+        key: 'onChangeUsername',
+        value: function onChangeUsername(event) {
 
-      var password = event.target.value;
+            var username = event.target.value;
+            var usernameValidation = "";
 
-      this.setState({ password: password });
-    }
-  }, {
-    key: 'onSubmitForm',
-    value: function onSubmitForm(event) {
-      event.preventDefault();
+            this.setState({ username: username, usernameValidation: usernameValidation });
+        }
+    }, {
+        key: 'onChangePassword',
+        value: function onChangePassword(event) {
 
-      var password = this.state.password;
-      var username = this.state.username;
+            var password = event.target.value;
+            var passwordValidation = "";
 
-      _superagent2.default.post('login').set('X-CSRF-TOKEN', this.csrfToken).send({ username: username, password: password }).end(function (err, rest) {});
-    }
-  }]);
+            this.setState({ password: password, passwordValidation: passwordValidation });
+        }
+    }, {
+        key: 'onSubmitForm',
+        value: function onSubmitForm(event) {
+            var _this2 = this;
 
-  return LoginForm;
+            event.preventDefault();
+
+            var password = this.state.password;
+            var username = this.state.username;
+
+            _superagent2.default.post('login').set('X-CSRF-TOKEN', this.csrfToken).set('Accept', 'application/json').send({ username: username, password: password }).then(function (success) {
+
+                console.log(success);
+            }, function (error) {
+
+                if (error.status == 422) {
+                    _.map(error.response.body, function (value, key) {
+                        _this2.setState(_defineProperty({}, key + 'Validation', value));
+                    });
+                }
+
+                if (error.status == 401) {
+                    var loginError = error.response.body.pop();
+                    _this2.setState({ loginError: loginError });
+                }
+            });
+        }
+    }]);
+
+    return LoginForm;
 }(_react2.default.Component);
 
 exports.default = LoginForm;

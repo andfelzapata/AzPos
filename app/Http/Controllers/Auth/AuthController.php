@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use App\AzPos\Domain\Services\UserAuthService;
 
 use Illuminate\Http\Request;
@@ -16,7 +17,17 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirect = '/home';
+
+    /**
+     * @var Error response message.
+     */
+    protected $errorMessage;
+
+    /**
+     * @var Response estatus code.
+     */
+    protected $statusCode;
 
     /**
      * @var UserAuthService
@@ -38,53 +49,103 @@ class AuthController extends Controller
     /**
      * Start processing login request.
      *
-     * @param Request $request
+     * @param LoginRequest $request
      *
      * @return mixed
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $this->validate($request, [
-            'username' => 'required', 'password' => 'required'
-        ]); // Returns response with validation errors if any with 422 status code.
-
         $credentials = $request->only('username', 'password');
 
         if($this->authenticate($credentials))
         {
-            return response(['redirect' => $this->redirect, 'msg' => $this->message],
-                $this->statusCode)->header('Content-Type', 'application/json');
+            return response(['login' => 'success'], $this->statusCode)->header('Content-Type', 'application/json');
         }
 
-        return response(['redirect' => '', 'msg' => $this->getFailedLoginMessage()], 401)
+        return response([ $this->getErrorMessage() ], $this->statusCode)
             ->header('Content-Type', 'application/json');
 
     }
 
-    public function authenticate($credentials)
+    /**
+     * Attempt authentication.
+     *
+     * @param $credentials
+     *
+     * @return bool
+     */
+    private function authenticate($credentials)
     {
-        // Check if account is active and if username exists.
-        if(! $this->userAuthService->accountActive($credentials['username']) && $this->userAuthService->usernameExists($credentials['username']))
+        $this->statusCode = 401;
+
+        if( !$this->userAuthService->usernameExists($credentials['username']) )
         {
-            $this->message = "Username doesn't exist or account inactive";
-            $this->statusCode = 422;
-            $this->redirect = "login";
-            return true;
+            $this->errorMessage = "Username does not exist";
+            return false;
+        }
+
+        if( $this->userAuthService->usernameExists($credentials['username']) && ! $this->userAuthService->accountActive($credentials['username'])) {
+            $this->errorMessage = "Account is inactive";
+            return false;
         }
 
         $this->statusCode = 200;
 
-        if(Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']] ))
-        {
+        if($this->attemptWithUsername($credentials)) {
             return true;
         }
 
-        elseif(Auth::attempt(['email' => $credentials['username'], 'password' => $credentials['password']] ))
-        {
+        if($this->attemptWithEmail($credentials)) {
             return true;
         }
+
+        return response([ $this->getErrorMessage() ], 401)
+            ->header('Content-Type', 'application/json');
     }
 
+    /**
+     * Attempt login with username.
+     *
+     * @param $credentials
+     *
+     * @return mixed
+     */
+    private function attemptWithUsername($credentials)
+    {
+        return Auth::attempt(
+            ['username' => $credentials['username'], 'password' => $credentials['password']]
+        );
+    }
+
+    /**
+     * Attempt login with email.
+     *
+     * @param $credentials
+     *
+     * @return mixed
+     */
+    private function attemptWithEmail($credentials)
+    {
+        return Auth::attempt(
+            ['email' => $credentials['username'], 'password' => $credentials['password']]
+        );
+    }
+
+    /**
+     * Return error message.
+     *
+     * @return String
+     */
+    private function getErrorMessage()
+    {
+        return ! empty($this->errorMessage) ? $this->errorMessage : "Credentials do not match our records";
+    }
+
+    /**
+     * Logout of application.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
         Auth::logout();

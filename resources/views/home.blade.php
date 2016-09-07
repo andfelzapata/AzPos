@@ -109,6 +109,14 @@
                 width: 100%;
             }
 
+            .LoginError {
+                position: absolute;
+                right: 0;
+                left: 0;
+                text-align: center;
+                z-index: -10;
+            }
+
         </style>
     </head>
     <body>
