@@ -26,7 +26,7 @@ AzPos is free and open-source, and currently only works as a self-hosted platfor
 
 
 #TODO
-[Still to be done...](features.md)
+[Still to be done... ](todo.md)
 
 #PHP Packages
 * [Entrust](https://github.com/Zizaco/entrust)
