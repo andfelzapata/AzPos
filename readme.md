@@ -9,8 +9,14 @@ AzPos is free and open-source, and currently only works as a self-hosted platfor
 * Step 2
 * Step 3
 
-#Features
+#Documentation
 
+#Main Features
+
+##Completed Features
+ * None
+
+## Backlog Features
 * Overall Dashboard
 * Customer Management
 * Suppliers Management
