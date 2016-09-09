@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AuthControllerTest extends TestCase
 {
+    use DatabaseMigrations;
+
     public function setUp()
     {
         parent::setUp();
@@ -16,30 +18,32 @@ class AuthControllerTest extends TestCase
 
     /**
      * Test successful login using username.
-     *
-     * @return void
      */
     public function testSuccessfulLoginWithUsername()
     {
-        $credentials = ['username' => 'lauraazapataa', 'password' => '1q2w3e4r'];
+        factory(EloquentUser::class)->create(['username' => 'jonsnow']);
+
+        $credentials = ['username' => 'jonsnow', 'password' => '1q2w3e4r'];
 
         $response = $this->call('POST', 'login', $credentials);
 
         $this->assertEquals(200, $response->status());
-
-        Auth::logout();
 
     }
 
+    /**
+     * Test successful login using email.
+     */
     public function testSuccessfulLoginWithEmail()
     {
-        $credentials = ['username' => 'lauraazapataa@gmail.com', 'password' => '1q2w3e4r'];
+        factory(EloquentUser::class)->create( ['email' => 'jonsnow@winterfell.north'] );
+
+        $credentials = ['username' => 'jonsnow@winterfell.north', 'password' => '1q2w3e4r'];
 
         $response = $this->call('POST', 'login', $credentials);
 
         $this->assertEquals(200, $response->status());
 
-        Auth::logout();
     }
 
     /**
@@ -47,7 +51,9 @@ class AuthControllerTest extends TestCase
      */
     public function testUsernameDoesNotExistReturnsStatusCode401()
     {
-        $credentials = ['username' => 'doesnotexist', 'password' => '1q2w3e4r'];
+        factory(EloquentUser::class)->create(['username' => 'kinginthenorth']);
+
+        $credentials = ['username' => 'robbstark', 'password' => '1q2w3e4r'];
 
         $response = $this->call('POST', 'login', $credentials);
 
@@ -59,7 +65,9 @@ class AuthControllerTest extends TestCase
      */
     public function testUsernameDoestNotExistReturnsProperText()
     {
-        $credentials = ['username' => 'doesnotexist', 'password' => '1q2w3e4r'];
+        factory(EloquentUser::class)->create(['username' => 'nedstark']);
+
+        $credentials = ['username' => 'dead', 'password' => '1q2w3e4r'];
 
         $response = $this->call('POST', 'login', $credentials);
 
@@ -67,70 +75,59 @@ class AuthControllerTest extends TestCase
     }
 
     /**
-     * Test correct response when account is inactive.
+     * Test correct response text is returned when accoutn is inactive.
      */
-    public function testAccountIsInactiveReturnsStatusCode401()
+    public function testAccountIsInactiveReturnsProperText()
     {
-        $this->makeUserInactive();
+        factory(EloquentUser::class)->create(['username' => 'varys', 'active' => 0]);
 
-        $credentials = ['username' => 'lauraazapataa', 'password' => '1q2w3e4r'];
+        $credentials = ['username' => 'varys', 'password' => '1q2w3e4r'];
 
         $response = $this->call('POST', 'login', $credentials);
 
         $this->assertContains("Account is inactive", $response->content());
-
-        $this->makeUserActive();
     }
 
-    public function testAccountIsInactiveReturnsProperText()
+    /**
+     * Test correct response when account is inactive
+     */
+    public function testAccountIsInactiveReturnsStatusCode401()
     {
-        $this->makeUserInactive();
+        factory(EloquentUser::class)->create(['username' => 'varys', 'active' => 0]);
 
-        $credentials = ['username' => 'lauraazapataa', 'password' => '1q2w3e4r'];
+        $credentials = ['username' => 'varys', 'password' => '1q2w3e4r'];
 
         $response = $this->call('POST', 'login', $credentials);
 
         $this->assertEquals('401', $response->status());
-
-        $this->makeUserActive();
     }
 
+    /**
+     * Test user login fails with wrong password, correct username
+     */
     public function testLoginFailsWithCorrectUsernameWrongPasswordReturns401Status()
     {
-        $credentials = ['username' => 'lauraazapataa', 'password' => 'notachance'];
+        factory(EloquentUser::class)->create(['username' => 'viserys', 'password' => bcrypt('notadragon') ]);
+
+        $credentials = ['username' => 'viserys', 'password' => 'dragon'];
 
         $response = $this->call('POST', 'login', $credentials);
 
         $this->assertEquals('401', $response->status());
     }
 
+    /**
+     *  Test user login fail with wrong password, correct username returns correct text.*
+     */
     public function testLoginFailsWithCorrectUsernameWrongPasswordReturnsProperText()
     {
-        $credentials = ['username' => 'lauraazapataa', 'password' => 'notachance'];
+        factory(EloquentUser::class)->create(['username' => 'joffrey', 'password' => bcrypt('baratheon') ]);
+
+        $credentials = ['username' => 'joffrey', 'password' => 'lannister'];
 
         $response = $this->call('POST', 'login', $credentials);
 
         $this->assertContains("Credentials do not match our records", $response->content());
     }
 
-
-    /**
-     * Take first user and make inactive.
-     */
-    private function makeUserInactive()
-    {
-        $user = EloquentUser::first();
-        $user->active = 0;
-        $user->save();
-    }
-
-    /**
-     * Take first user and make active.
-     */
-    private function makeUserActive()
-    {
-        $user = EloquentUser::first();
-        $user->active = 1;
-        $user->save();
-    }
 }

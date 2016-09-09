@@ -1,23 +1,17 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
+use App\AzPos\Domain\UserModel\EloquentUser;
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(EloquentUser::class, function (Faker\Generator $faker) {
     static $password;
-
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'first_name' => $faker->name,
+        'last_name' => $faker->lastName,
+        'username' => $faker->userName,
+        'email' => $faker->email,
+        'phone' => $faker->phoneNumber,
+        'password' => $password ?: $password = bcrypt('1q2w3e4r'),
+        'active' => 1,
         'remember_token' => str_random(10),
     ];
 });

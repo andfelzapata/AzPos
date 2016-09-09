@@ -1,13 +1,9 @@
-#AzPos
+#Az Pos
 AzPos aims to be a simple point of sale (POS), build with bars and restaurants in mind. It's goal
 is to deliver an elegant and intuitive solution that helps with day to day task that may arise in any eating and drinking business.
 AzPos is free and open-source, and currently only works as a self-hosted platform. It's build with [Laravel](https://laravel.com) 5.3.4 and [React](https://facebook.github.io/react/) 15.3.1.
 
 #Installation
-
-* Step 1
-* Step 2
-* Step 3
 
 #Documentation
 

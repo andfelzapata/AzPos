@@ -11,9 +11,4 @@ class HomePageTest extends TestCase
         $this->visit('/')
              ->see('azPOS');
     }
-
-    public function testLoginSuccess()
-    {
-        $this->visit('/');
-    }
 }
