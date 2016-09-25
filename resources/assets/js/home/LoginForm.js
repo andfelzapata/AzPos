@@ -1,7 +1,6 @@
 import React from 'react';
 import Request from 'superagent';
 
-
 class LoginForm extends React.Component {
 
     constructor(props) {
