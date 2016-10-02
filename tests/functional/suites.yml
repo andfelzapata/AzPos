@@ -1,2 +1,2 @@
 imports:
-    - suites/auth/authentication.yml
+    - suites/authentication/authentication.yml

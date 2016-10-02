@@ -1,5 +1,5 @@
 default:
     suites:
         authentication:
-            paths:    [ %paths.base%/tests/functional/features/authentication ]
+            paths:    [ %paths.base%/tests/functional/features/auth ]
             contexts: [ Contexts\AuthenticationContext ]

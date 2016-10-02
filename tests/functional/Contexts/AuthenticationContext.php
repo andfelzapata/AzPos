@@ -4,8 +4,9 @@ namespace Contexts;
 
 use PHPUnit_Framework_Assert as PHPUnit;
 
-use LaravelApplication;
 use App\AzPos\Domain\UserModel\EloquentUser;
+use Tests\Functional\Traits\LaravelApplication;
+
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
@@ -59,7 +60,11 @@ class AuthenticationContext extends MinkContext implements Context
     public function thereIsAnUserWithPassword($user, $password)
     {
         $password = bcrypt($password);
-        $this->user = factory(EloquentUser::class)->create(['username' => 'jonsnow', 'password' => $password]);
+        $this->user = factory(EloquentUser::class)->create([
+            'username' => $user,
+            'email' => 'jonsnow@winterfell.north',
+            'password' => $password,
+        ]);
 
         PHPUnit::assertEquals($user, $this->user->username);
         PHPUnit::assertEquals($password, $this->user->password);
@@ -82,7 +87,7 @@ class AuthenticationContext extends MinkContext implements Context
      */
     public function iTryToLoginWithUsernameAndPassword($username, $password)
     {
-        $this->response = $this->call('POST', '/login', ['username' => 'jonsnow', 'password' => $password]);
+        $this->response = $this->call('POST', '/login', ['username' => $username, 'password' => $password]);
         PHPUnit::assertNotContains($this->response->getStatusCode(), [500, 404]);
     }
 
@@ -123,15 +128,34 @@ class AuthenticationContext extends MinkContext implements Context
      */
     public function iShouldSeeAValidationError()
     {
-        $this->seeText('required');
+        $this->seeJson([
+            "password" => ["The password field is required."],
+            "username" => ["The username field is required."]
+        ]);
     }
 
     /**
-     * @Then the status code should be :arg1
+     * @Then the status code should be :statusCode
      */
-    public function theStatusCodeShouldBe($arg1)
+    public function theStatusCodeShouldBe($statusCode)
     {
         $this->seeStatusCode(422);
+    }
+
+    /**
+     * @Then I should see username does not exist message
+     */
+    public function iShouldSeeUsernameDoesNotExistMessage()
+    {
+        $this->seeJson(['Username does not exist']);
+    }
+
+    /**
+     * @Then I should see credentials don't match message
+     */
+    public function iShouldSeeCredentialsDonTMatchMessage()
+    {
+        $this->seeJson(['Credentials do not match our records']);
     }
 
 }

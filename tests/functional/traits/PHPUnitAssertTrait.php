@@ -1,6 +1,11 @@
 <?php
 
+namespace Tests\Functional\Traits;
+
 use PHPUnit_Framework_Assert as PHPUnit;
+
+use PHPUnit_Framework_Constraint_IsEqual;
+use PHPUnit_Framework_Constraint_ArrayHasKey;
 
 trait PHPUnitAssertTrait
 {

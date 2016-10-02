@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Functional\Traits;
+
 use Illuminate\Foundation\Testing\Concerns\InteractsWithContainer;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 use Illuminate\Foundation\Testing\Concerns\ImpersonatesUsers;
