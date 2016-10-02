@@ -1,0 +1,7 @@
+suites:
+    payment_system:
+        namespace: App
+        psr4_prefix: App
+        src_path: app
+        spec_path: tests
+        spec_prefix: spec

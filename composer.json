@@ -33,7 +33,10 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
-        ]
+        ],
+        "psr-4": {
+            "Tests\\Functional\\": "tests/functional"
+        }
     },
     "scripts": {
         "post-root-package-install": [

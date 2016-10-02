@@ -59,7 +59,7 @@ class AuthController extends Controller
 
         if($this->authenticate($credentials))
         {
-            return response(['login' => 'success'], $this->statusCode)->header('Content-Type', 'application/json');
+            return redirect('dashboard')->header('Content-Type', 'application/json');
         }
 
         return response([ $this->getErrorMessage() ], 401)
