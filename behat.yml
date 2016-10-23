@@ -1,0 +1,3 @@
+imports:
+    - tests/functional/profiles.yml
+    - tests/functional/suites.yml

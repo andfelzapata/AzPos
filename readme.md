@@ -1,27 +1,44 @@
-# Laravel PHP Framework
+#Az Pos
+AzPos aims to be a simple point of sale (POS), build with bars and restaurants in mind. It's goal
+is to deliver an elegant and intuitive solution that helps with day to day task that may arise in any eating and drinking business.
+AzPos is free and open-source, and currently only works as a self-hosted platform. It's build with [Laravel](https://laravel.com) 5.3.4 and [React](https://facebook.github.io/react/) 15.3.1.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+#Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+#Documentation
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+#Main Features
 
-## Official Documentation
+##Completed Features
+ * None
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+## Backlog Features
+* Overall Dashboard
+* Customer Management
+* Suppliers Management
+* Inventory Management
+* Product Management
+* Task Management
+* User Management with roles and permissions
+* Reports Module
+* Sales Module
+* Expenses Module
+* Settings Management
+* Interactive table management (Manage current services with an interactive interface)
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+#TODO
+[Still to be done... ](todo.md)
 
-## Security Vulnerabilities
+#PHP Packages
+* [Entrust](https://github.com/Zizaco/entrust)
+ 
+#Javascript and Frontend Dependencies
+* [React](https://github.com/facebook/react)
+* [Lodash](https://github.com/lodash/lodash)
+* [Superagent](https://github.com/visionmedia/superagent)
+* [Twitter Bootstrap](https://github.com/twbs/bootstrap) (V4)
+* [Reactstrap](https://github.com/reactstrap/reactstrap)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).

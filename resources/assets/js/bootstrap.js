@@ -1,3 +1,10 @@
+window.COLORS = {
+    primary: "#337ab7",
+    info: "#5bc0de",
+    success: "#5cb85c",
+    warning: "#f0ad4e",
+    danger: "#d9534f"
+}
 
 window._ = require('lodash');
 

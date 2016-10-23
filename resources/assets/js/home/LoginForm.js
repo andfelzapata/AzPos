@@ -1,68 +1,90 @@
 import React from 'react';
 import Request from 'superagent';
 
-
 class LoginForm extends React.Component {
 
-  constructor(props) {
-    
-    super(props);
+    constructor(props) {
 
-    this.state = {
+        super(props);
 
-      username: '',
-      
-      password: ''
+        this.state = {
+
+            username: '',
+            usernameValidation: '',
+
+            password: '',
+            passwordValidation: '',
+
+            loginError: '',
+
+        }
+
+        this.csrfToken = document.querySelector('meta[name=csrf-token]').content
+
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onSubmitForm = this.onSubmitForm.bind(this);
 
     }
 
-    this.csrfToken = document.querySelector('meta[name=csrf-token]').content
+    render () {
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
+        let loginErrorStyles = {
+            position: 'absolute',
+            right: 0,
+            left: 0,
+            textAlign: 'center',
+            zIndex: 1
+        }
 
-  }
+        let submitButtonStyles = {
+            position: 'relative',
+            zIndex: 2,
+        }
 
-  render () {
+        return (
 
-    return (
+          <form onSubmit={this.onSubmitForm}>
 
-      <form onSubmit={this.onSubmitForm}>
+            <div className="form-group">
 
-        <div className="form-group">
+                <input className="form-control" value={this.state.username} onChange={this.onChangeUsername} placeholder="usuario" />
+                <span className="ValidationError">{this.state.usernameValidation}</span>
 
-          <input className="form-control" value={this.state.username} onChange={this.onChangeUsername} placeholder="usuario" />
+            </div>
 
-        </div>
+            <div className="form-group">
 
-        <div className="form-group">       
+                <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} placeholder="contraseña" />
+                <span className="ValidationError">{this.state.passwordValidation}</span>
 
-          <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} placeholder="contraseña" />
+            </div>
 
-        </div>
+            <button type="submit" value="Login" style={submitButtonStyles} className="btn btn-primary pull-right">Login</button>
 
-        <button type="submit" className="btn btn-primary">Login</button>
+            <div className="LoginError" style={loginErrorStyles}> {this.state.loginError} </div>
 
-      </form>
+          </form>
 
-    );
+        );
 
-  }
+    }
 
   onChangeUsername(event) {
 
     const username = event.target.value;
+    const usernameValidation = ""
 
-    this.setState({ username });
+    this.setState({ username, usernameValidation });
 
   }
 
   onChangePassword(event) {
 
-    const password = event.target.value;
+      const password = event.target.value;
+      const passwordValidation = "";
 
-    this.setState({ password });
+    this.setState({ password, passwordValidation });
 
   }
 
@@ -70,14 +92,30 @@ class LoginForm extends React.Component {
     event.preventDefault();
 
     const password = this.state.password;
-
     const username = this.state.username;
 
     Request
-        .post('/login')
+        .post('login')
         .set('X-CSRF-TOKEN', this.csrfToken)
+        .set('Accept', 'application/json')
         .send({username, password})
-        .end(function(err, rest) {
+
+        .then( (success) => {
+
+            window.location = 'dashboard';
+
+        }, (error) => {
+
+            if(error.status == 422) {
+                _.map(error.response.body, (value, key) => {
+                    this.setState({ [`${key}Validation`]: value });
+                });
+            }
+
+            if(error.status == 401) {
+                let loginError = error.response.body.pop();
+                this.setState({ loginError });
+            }
 
         });
 
