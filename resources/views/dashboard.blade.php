@@ -3,5 +3,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>Very simple dashboard.</p>
+    <div id="app"></div>
 @endsection
