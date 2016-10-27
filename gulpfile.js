@@ -1,6 +1,7 @@
 const elixir = require('laravel-elixir');
-
-var browserify = require('browserify');
+var gulp = require('gulp');
+var shell = require('gulp-shell')
+var webpack = require('laravel-elixir-webpack-official');
 
 
 /*
@@ -18,7 +19,12 @@ elixir(mix => {
 
     mix.sass('app.scss')
 
-       .browserify('home.js')
+       .webpack('home.js')
 
-       .browserify('app.js')
+       .webpack('app.js')
 });
+
+// Run migrations in sub dirs.
+gulp.task('migrate', shell.task([
+    'php artisan migrate --path=/database/migrations/users'
+]));

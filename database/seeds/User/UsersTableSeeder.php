@@ -1,6 +1,6 @@
 <?php
 
-use App\AzPos\Domain\UserModel\EloquentUser;
+use App\Domain\User\EloquentUser;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -31,11 +31,11 @@ class UsersTableSeeder extends Seeder
     {
         $this->user->create(
             [
-                'first_name' => 'Laura',
-                'last_name' => 'Zapata',
-                'username' => 'lauraazapataa',
-                'email' => 'lauraazapataa@gmail.com',
-                'phone' => '+573212032851',
+                'first_name' => 'Admin',
+                'last_name' => '',
+                'username' => 'admin',
+                'email' => 'admin@sample.com',
+                'phone' => '34494949499',
                 'password' => Hash::make('1q2w3e4r'),
                 'active' => true
 
