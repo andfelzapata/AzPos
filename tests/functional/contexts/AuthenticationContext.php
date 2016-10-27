@@ -2,11 +2,7 @@
 
 namespace Contexts;
 
-use PHPUnit_Framework_Assert as PHPUnit;
-
-use App\AzPos\Domain\UserModel\EloquentUser;
-use Tests\Functional\Traits\LaravelApplication;
-
+use App\Domain\User\EloquentUser;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
@@ -15,6 +11,8 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Tester\Exception\PendingException;
 
 use Laracasts\Behat\Context\Migrator;
+use PHPUnit_Framework_Assert as PHPUnit;
+use Tests\Functional\Traits\LaravelApplication;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -28,7 +26,7 @@ class AuthenticationContext extends MinkContext implements Context
 
     /**
      *
-     * @var \App\AzPos\Domain\UserModel\EloquentUser
+     * @var \App\Domain\User\EloquentUser
      */
     protected $user;
 

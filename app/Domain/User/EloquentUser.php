@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AzPos\Domain\UserModel;
+namespace App\Domain\User;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

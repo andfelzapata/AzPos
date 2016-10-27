@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AzPos\Http\Dashboard;
+namespace App\Http\Dashboard;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

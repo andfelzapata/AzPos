@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\AzPos\Domain\Services\UserAuthService;
+use App\Services\Contracts\UserAuthServiceInterface;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +25,7 @@ class AuthController extends Controller
     protected $errorMessage;
 
     /**
-     * @var Response estatus code.
+     * @var Response status code.
      */
     protected $statusCode;
 
@@ -37,9 +37,9 @@ class AuthController extends Controller
     /**
      * AuthController constructor.
      *
-     * @param UserAuthService $userAuthService
+     * @param UserAuthServiceInterface $userAuthService
      */
-    public function __construct(UserAuthService $userAuthService)
+    public function __construct(UserAuthServiceInterface $userAuthService)
     {
         $this->middleware('guest', ['except' => 'logout']);
 

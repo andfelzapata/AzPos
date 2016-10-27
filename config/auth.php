@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\AzPos\Domain\UserModel\EloquentUser::class,
+            'model' => App\Domain\User\EloquentUser::class
         ],
 
         // 'users' => [

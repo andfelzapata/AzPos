@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'My Application',
+    'name' => 'Az Pos',
 
     /*
     |--------------------------------------------------------------------------
@@ -164,20 +164,19 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-
-        //
-
-        /*
-         * Application Service Providers...
+         * Application Service Providers
          */
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\Routes\DashboardRouteServiceProvider::class
+
+        /**
+         * Domain Service Providers
+         */
+        App\Providers\Routes\DashboardRouteServiceProvider::class,
+        App\Providers\Auth\UserAuthServiceProvider::class,
 
     ],
 

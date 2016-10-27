@@ -1,6 +1,6 @@
 <?php
 
-use App\AzPos\Domain\UserModel\EloquentUser;
+use App\Domain\User\EloquentUser;
 
 $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
     static $password;
