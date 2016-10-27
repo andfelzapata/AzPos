@@ -14,7 +14,7 @@ class DashboardRouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\AzPos\Http\Dashboard';
+    protected $namespace = 'App\Http\Controllers\Dashboard';
 
     /**
      * Define your route model bindings, pattern filters, etc.

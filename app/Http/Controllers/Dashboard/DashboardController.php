@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Dashboard;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
