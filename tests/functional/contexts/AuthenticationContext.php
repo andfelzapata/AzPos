@@ -10,8 +10,8 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Tester\Exception\PendingException;
 
-use Laracasts\Behat\Context\Migrator;
 use PHPUnit_Framework_Assert as PHPUnit;
+use Tests\Functional\Traits\DatabaseMigration;
 use Tests\Functional\Traits\LaravelApplication;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -22,7 +22,7 @@ class AuthenticationContext extends MinkContext implements Context
     /**
      * Laravel testing framework traits
      */
-    use LaravelApplication, DatabaseTransactions, Migrator, WithoutMiddleware;
+    use LaravelApplication, DatabaseTransactions, DatabaseMigration, WithoutMiddleware;
 
     /**
      *

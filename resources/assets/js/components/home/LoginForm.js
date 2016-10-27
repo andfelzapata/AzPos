@@ -1,10 +1,14 @@
 import React from 'react';
 import Request from 'superagent';
+import {map} from 'lodash';
 
 class LoginForm extends React.Component {
 
+    /**
+     * LoginFrom Constructor
+     * @param props
+     */
     constructor(props) {
-
         super(props);
 
         this.state = {
@@ -107,7 +111,7 @@ class LoginForm extends React.Component {
         }, (error) => {
 
             if(error.status == 422) {
-                _.map(error.response.body, (value, key) => {
+                map(error.response.body, (value, key) => {
                     this.setState({ [`${key}Validation`]: value });
                 });
             }
