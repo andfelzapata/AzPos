@@ -1,6 +1,6 @@
 import React from 'react';
 import Request from 'superagent';
-import {map} from 'lodash';
+import { map } from 'lodash';
 
 class LoginForm extends React.Component {
 

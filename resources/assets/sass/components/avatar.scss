@@ -1,0 +1,20 @@
+@import "../variables";
+
+.Avatar {
+  height: 75px;
+  background: $brand-primary;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Avatar__img {
+  @extend .img-responsive;
+  border-radius: 50%;
+}
+
+.Avatar__icon-lock {
+  @extend .fa;
+  @extend .fa-lock;
+}

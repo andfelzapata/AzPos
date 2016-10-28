@@ -1,9 +1,24 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,600);
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// FontAwesome
+@import "node_modules/font-awesome/scss/font-awesome";
+
+@import "base/base";
 
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Layouts
+@import "layout/main";
+@import "layout/body";
+@import "layout/sidebar";
+@import "layout/navbar";
+
+// Components
+@import "components/avatar";

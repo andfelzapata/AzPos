@@ -1,0 +1,17 @@
+.Body {
+  left: 0;
+  flex: 1 0 auto;
+  z-index: 100;
+  margin-left: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  background: #E9F0F5;
+  margin-top: 25px;
+  padding-bottom: 25px;
+}
+
+@media (min-width: 990px) {
+  .Body {
+    margin-left: 250px;
+  }
+}

@@ -22,6 +22,8 @@ elixir(mix => {
        .webpack('home.js')
 
        .webpack('app.js')
+
+    mix.copy('node_modules/font-awesome/fonts', 'public/fonts/');
 });
 
 // Run migrations in sub dirs.
