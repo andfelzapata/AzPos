@@ -9,6 +9,13 @@ class Dashboard extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            const spinner = document.getElementsByClassName('Loading-Spinner')[0];
+            document.body.removeChild(spinner);
+        }, 500);
+    }
+
     render() {
         return (
             <div className="Container">

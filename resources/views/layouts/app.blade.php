@@ -22,6 +22,10 @@
 </head>
 <body>
 
+    <div class="Loading-Spinner">
+        <img src="/images/loading.gif"/>
+    </div>
+
     @yield('content')
 
     <!-- Scripts -->
