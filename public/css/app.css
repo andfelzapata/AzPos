@@ -1,6 +1,45 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,600);
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script:400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script:400,700");
+html {
+  background: white;
+  overflow-x: hidden;
+  color: #89949B; }
+  html body {
+    font-family: "Lato", "sans-serif";
+    margin: 0;
+    font-size: 16px; }
+
+/**
+ * Display classes
+ */
+.flex-center, .NavActions__ActionLink {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center; }
+
+/**
+ * Padding and Margin
+ */
+.zero-p-right, .collapse-right {
+  padding-right: 0; }
+
+.zero-p-left, .collapse-left {
+  padding-left: 0; }
+
+.zero-m-right, .collapse-right {
+  margin-right: 0; }
+
+.zero-m-left, .collapse-left {
+  margin-left: 0; }
+
 /*!
  * Bootstrap v4.0.0-alpha.5 (https://getbootstrap.com)
  * Copyright 2011-2016 The Bootstrap Authors
@@ -5618,8 +5657,8 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+  src: url("/fonts/fontawesome-webfont.eot?v=4.7.0");
+  src: url("/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -7935,23 +7974,6 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   overflow: visible;
   clip: auto; }
 
-html {
-  background: white;
-  overflow-x: hidden;
-  color: #89949B; }
-  html body {
-    font-family: "Lato", "sans-serif";
-    margin: 0;
-    font-size: 16px; }
-
-.FlexCenter {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center; }
-
 .Container {
   display: -webkit-box;
   display: flex;
@@ -7995,11 +8017,94 @@ html {
   .Sidebar {
     left: 0; } }
 
+html {
+  background: white;
+  overflow-x: hidden;
+  color: #89949B; }
+  html body {
+    font-family: "Lato", "sans-serif";
+    margin: 0;
+    font-size: 16px; }
+
+/**
+ * Display classes
+ */
+.flex-center, .NavActions__ActionLink {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center; }
+
+/**
+ * Padding and Margin
+ */
+.zero-p-right, .collapse-right {
+  padding-right: 0; }
+
+.zero-p-left, .collapse-left {
+  padding-left: 0; }
+
+.zero-m-right, .collapse-right {
+  margin-right: 0; }
+
+.zero-m-left, .collapse-left {
+  margin-left: 0; }
+
 .Navbar {
   width: 100%;
   position: fixed;
   top: 0;
+  height: 75px;
+  background: #35495e; }
+
+.Navbar__nav {
+  margin-left: 250px;
+  padding: 0;
   height: 75px; }
+
+.Navbar__nav .container-fluid {
+  height: 75px; }
+  .Navbar__nav .container-fluid .row {
+    height: 75px; }
+
+.NavActions, .NavActions--Logout {
+  height: 100%;
+  margin: 0;
+  display: inline-block; }
+
+.NavActions--Logout {
+  background: #41b883; }
+
+.NavActions__Action {
+  width: 100px;
+  height: 100%; }
+
+.NavActions__ActionLink {
+  width: 100px;
+  height: 100%;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  color: #eceeef;
+  font-size: 1.7em; }
+
+.NavActions__ActionLink:hover {
+  -webkit-transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2);
+  color: #dee2e3 !important; }
+
+.NavActions__ActionLink:visited,
+.NavActions__ActionLink:active,
+.NavActions__ActionLink:focus {
+  color: #dee2e3 !important; }
+
+.NavActions__ActionLink--Logout {
+  color: white;
+  font-size: 2em; }
+
+.NavActions__ActionLink--Logout:hover {
+  color: white; }
 
 .Avatar {
   height: 75px;
@@ -8029,16 +8134,48 @@ html {
   background: #EDEDED; }
 
 .Lockout {
-  color: green;
+  color: green !important;
   font-size: 1.2em;
   margin-left: 1em;
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
   cursor: pointer; }
 
-.Lockout:hover {
-  -webkit-transform: scale(1.2, 1.2);
-  transform: scale(1.2, 1.2);
-  color: #006700; }
+.Lockout__icon {
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease; }
+
+.Lockout__icon:hover {
+  -webkit-transform: scale(1.2, 1.2) !important;
+  transform: scale(1.2, 1.2) !important;
+  color: #006700 !important; }
+
+.NavbarBrand {
+  font-family: "Oleo Script";
+  font-size: 1.8em;
+  color: white;
+  height: 100%;
+  margin: 0;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease; }
+
+.NavbarBrand:hover {
+  color: white; }
+
+.NavbarBrand__Container {
+  height: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center; }
+
+.NavbarBrand--Primary {
+  color: #41b883 !important; }
+
+.NavbarBrand--Secondary {
+  color: #35495e !important; }
+
+.NavbarBrand__Logo {
+  margin-right: 0.2em; }
 
 /*# sourceMappingURL=app.css.map */

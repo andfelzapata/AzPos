@@ -1,15 +1,12 @@
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,600);
+// Base elements, styling and fonts
+@import "base/base";
 
 // Bootstrap
 @import  "../../../node_modules/bootstrap/dist/css/bootstrap";
 
 // FontAwesome
+$fa-font-path: "/fonts";
 @import "../../../node_modules/font-awesome/scss/font-awesome";
-
-// Base element styling
-@import "base/base";
 
 // Variables
 @import "variables";
@@ -26,3 +23,4 @@
 // Common
 @import "common/loading";
 @import "common/lockout";
+@import "common/brand";

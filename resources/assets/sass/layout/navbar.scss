@@ -1,6 +1,77 @@
+@import "../variables";
+@import "../base/base";
+
+$navHeight: 75px;
+
 .Navbar {
   width: 100%;
   position: fixed;
   top: 0;
-  height: 75px;
+  height: $navHeight;
+  background: $brand-secondary;
+}
+
+.Navbar__nav {
+  margin-left: 250px;
+  padding: 0;
+  height: $navHeight;
+}
+
+.Navbar__nav {
+
+  .container-fluid {
+
+    height: $navHeight;
+
+    .row  {
+      height: $navHeight;
+    }
+
+  }
+
+}
+
+.NavActions {
+  height: 100%;
+  margin: 0;
+  display: inline-block;
+}
+
+.NavActions--Logout {
+  @extend .NavActions;
+  background: $brand-primary;
+}
+
+.NavActions__Action {
+  width: 100px;
+  height: 100%;
+}
+
+.NavActions__ActionLink {
+  width: 100px;
+  height: 100%;
+  @extend .flex-center;
+  transition: all 0.1s ease;
+  color: $gray-lighter;
+  font-size: 1.7em;
+}
+
+.NavActions__ActionLink:hover {
+  transform: scale(1.2, 1.2);
+  color: darken($gray-lighter, 5%) !important;
+}
+
+.NavActions__ActionLink:visited,
+.NavActions__ActionLink:active,
+.NavActions__ActionLink:focus {
+  color: darken($gray-lighter, 5%) !important;
+}
+
+.NavActions__ActionLink--Logout {
+  color: white;
+  font-size: 2em;
+}
+
+.NavActions__ActionLink--Logout:hover {
+  color: white;
 }

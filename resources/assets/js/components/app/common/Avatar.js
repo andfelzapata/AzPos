@@ -11,7 +11,7 @@ class Sidebar extends React.Component {
         return (
             <div className="Avatar">
                 <Container fluid>
-                    <Row className="FlexCenter">
+                    <Row className="flex-center">
                         <Col xs="4">
                             <img src="/images/avatar.png"  className="Avatar__img"/>
                         </Col>

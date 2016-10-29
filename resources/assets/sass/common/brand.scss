@@ -1,0 +1,37 @@
+@import "../variables";
+
+.NavbarBrand {
+  font-family: "Oleo Script";
+  font-size: 1.8em;
+  color: white;
+  height: 100%;
+  margin: 0;
+  transition: all 0.1s ease;
+}
+
+.NavbarBrand:hover {
+  color: white;
+}
+
+.NavbarBrand__Container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NavbarBrand--Primary {
+  color: $brand-primary !important;
+}
+
+.NavbarBrand--Secondary {
+  color: $brand-secondary !important;
+}
+
+.NavbarBrand__Logo {
+  margin-right: 0.2em;
+}
+
+.NavbarBrand__Name {
+
+}

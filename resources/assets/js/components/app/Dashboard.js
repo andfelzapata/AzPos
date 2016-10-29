@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from './layout/sidebar/Sidebar';
 import Body from './layout/Body';
-import Navbar from './layout/header/Navbar';
+import Navigation from './layout/header/Navigation';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
         return (
             <div className="Container">
                 <Sidebar/>
-                <Navbar/>
+                <Navigation/>
                 <Body/>
             </div>
         );

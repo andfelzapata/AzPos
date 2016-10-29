@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script:400,700');
+
 html {
   background: white;
   overflow-x: hidden;
@@ -11,8 +15,42 @@ html {
 
 }
 
-.FlexCenter {
+/**
+ * Display classes
+ */
+.flex-center {
   display: flex;
   align-items:center;
   justify-content: center;
 }
+
+
+/**
+ * Padding and Margin
+ */
+.zero-p-right {
+  padding-right:0;
+}
+
+.zero-p-left {
+  padding-left:0;
+}
+
+.zero-m-right {
+  margin-right:0;
+}
+
+.zero-m-left {
+  margin-left:0;
+}
+
+.collapse-right {
+  @extend .zero-m-right;
+  @extend .zero-p-right;
+}
+
+.collapse-left {
+  @extend .zero-m-left;
+  @extend .zero-p-left;
+}
+
