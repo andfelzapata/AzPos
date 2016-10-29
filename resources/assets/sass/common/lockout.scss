@@ -1,0 +1,17 @@
+.Lockout {
+  color: green;
+  font-size: 1.2em;
+  margin-left: 1em;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.Lockout:hover {
+  transform: scale(1.2, 1.2);
+  color: darken(green, 5%);
+}
+
+.Lockout__icon {
+  @extend .fa;
+  @extend .fa-lock;
+}

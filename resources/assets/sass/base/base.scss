@@ -4,9 +4,15 @@ html {
   color: #89949B;
 
   body {
-    font-family: "Lato, sans-serif";
+    font-family: "Lato", "sans-serif";
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
   }
 
+}
+
+.FlexCenter {
+  display: flex;
+  align-items:center;
+  justify-content: center;
 }

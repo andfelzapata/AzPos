@@ -4,6 +4,13 @@ is to deliver an elegant and intuitive solution that helps with day to day task 
 AzPos is free and open-source, and currently only works as a self-hosted platform. It's build with [Laravel](https://laravel.com) 5.3.4 and [React](https://facebook.github.io/react/) 15.3.1.
 
 #Installation
+- To use flex-box with bootstrap 4, you have to edit the `_variables.scss` file that comes with it.
+  * Open the _variables.scss file and find the $enable-flex variable.
+  *  Change it from false to true.
+  *  Recompile, and done! 
+  ** from bootstrap's docs. http://v4-alpha.getbootstrap.com/getting-started/flexbox/
+ 
+
 
 #Documentation
 

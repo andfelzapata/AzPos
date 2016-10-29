@@ -1,8 +1,7 @@
 import React from 'react';
-import { Container } from 'reactstrap';
-import Sidebar from './sidebar/Sidebar';
-import Body from './content/Body';
-import Navbar from './header/Navbar';
+import Sidebar from './layout/sidebar/Sidebar';
+import Body from './layout/Body';
+import Navbar from './layout/header/Navbar';
 
 class Dashboard extends React.Component {
     constructor(props) {

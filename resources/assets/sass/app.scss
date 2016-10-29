@@ -1,14 +1,14 @@
-
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,600);
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import  "../../../node_modules/bootstrap/dist/css/bootstrap";
 
 // FontAwesome
-@import "node_modules/font-awesome/scss/font-awesome";
+@import "../../../node_modules/font-awesome/scss/font-awesome";
 
+// Base element styling
 @import "base/base";
 
 // Variables
@@ -22,3 +22,7 @@
 
 // Components
 @import "components/avatar";
+
+// Common
+@import "common/loading";
+@import "common/lockout";

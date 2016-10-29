@@ -10,11 +10,6 @@
 }
 
 .Avatar__img {
-  @extend .img-responsive;
+  @extend .img-fluid;
   border-radius: 50%;
-}
-
-.Avatar__icon-lock {
-  @extend .fa;
-  @extend .fa-lock;
 }
