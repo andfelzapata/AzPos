@@ -45,6 +45,8 @@ $navHeight: 75px;
 .NavActions__Action {
   width: 100px;
   height: 100%;
+  margin-left:0!important;
+  border-left: solid 1px $gray;
 }
 
 .NavActions__ActionLink {
@@ -70,6 +72,7 @@ $navHeight: 75px;
 .NavActions__ActionLink--Logout {
   color: white;
   font-size: 2em;
+  border: none;
 }
 
 .NavActions__ActionLink--Logout:hover {

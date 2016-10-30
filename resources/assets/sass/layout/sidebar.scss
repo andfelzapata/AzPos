@@ -48,6 +48,7 @@
 
 .Sidebar__Control-Link--Active {
   background: darken($brand-primary, 10%) !important;
+  color: lighten($brand-primary, 5%) !important;
 }
 
 .Sidebar__Sections {

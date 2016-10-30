@@ -2,47 +2,8 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import Avatar from '../../common/Avatar';
 import sidebarSections from '../../app/sidebarSections';
-
-class SidebarControlBtn extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    showActiveSection() {
-        this.props.showActiveSection(this.props.sidebarName, this.props.sidebar);
-    }
-
-    render() {
-        const currentClassState = this.props.active ? "Sidebar__Control-Link Sidebar__Control-Link--Active" : "Sidebar__Control-Link";
-
-        return (
-            <div className="Sidebar__Control">
-                <a className={currentClassState} onClick={this.showActiveSection.bind(this)}>
-                    {this.props.children}
-                </a>
-            </div>
-        );
-    }
-}
-
-class SidebarSection extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const styling = {
-            left: `${this.props.left}%`
-        }
-
-        return (
-            <div className="Sidebar__Section" style={styling}>
-                {this.props.children}
-            </div>
-        );
-    }
-}
-
+import SidebarControlBtn from './SidebarControlBtn';
+import SidebarSection from './SidebarSection';
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -58,7 +19,7 @@ class Sidebar extends React.Component {
 
     showActiveSection(sectionName, sidebar) {
 
-        let sidebarSections = [...this.state.sidebarSections].map((section, index) => {
+        let sidebarSections = [...this.state.sidebarSections].map((section) => {
             if(section['name'] == sectionName) {
                 section['active'] = true;
                 section['left'] = 0;
@@ -66,7 +27,8 @@ class Sidebar extends React.Component {
 
             else {
                 section['active'] = false;
-                section['left'] = section['initialPosition'] - sidebar * 100;
+                const displacement = sidebar * 100;
+                section['left'] = section['initialPosition'] - displacement;
             }
 
             return section;
