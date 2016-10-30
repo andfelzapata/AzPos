@@ -10,6 +10,63 @@
 
 }
 
+.Sidebar__Container {
+  height: 100%;
+  overflow: scroll;
+}
+
+.Sidebar__Controls {
+  @extend .flex-center;
+  height: 40px;
+  background: darken($brand-primary, 7%);
+}
+
+.Sidebar__Control {
+  height: 100%;
+  cursor: pointer;
+  border-right: 1px solid darken($brand-primary, 11%);
+  display: inline-block;
+  width: 100%;
+  transition: all 0.1s ease;
+}
+
+.Sidebar__Control:hover {
+  background: darken($brand-primary, 9%) !important;
+}
+
+.Sidebar__Control:last-of-type {
+  border-right: none;
+}
+
+.Sidebar__Control-Link {
+  width: 100%;
+  height: 100%;
+  @extend .flex-center;
+  color: darken($brand-primary, 25%) !important;
+  transition: all 0.1s ease;
+}
+
+.Sidebar__Control-Link--Active {
+  background: darken($brand-primary, 10%) !important;
+}
+
+.Sidebar__Sections {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.Sidebar__Section {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: all 0.3s ease;
+}
+
 @media (min-width: 990px) {
 
   .Sidebar {

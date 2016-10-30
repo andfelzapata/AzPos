@@ -2,7 +2,17 @@ const elixir = require('laravel-elixir');
 var gulp = require('gulp');
 var shell = require('gulp-shell')
 var webpack = require('laravel-elixir-webpack-official');
+var del = require('del');
 
+var Task = elixir.Task;
+
+Elixir.extend('remove', function(path) {
+
+    new Task('remove', function() {
+        console.log(`Current directory: ${process.cwd()}`); //for debug, remove this if you don't want
+        return del(path);
+    });
+});
 
 /*
  |--------------------------------------------------------------------------
@@ -16,6 +26,8 @@ var webpack = require('laravel-elixir-webpack-official');
  */
 
 elixir(mix => {
+
+    mix.remove([ 'public/build']);
 
     mix.sass('app.scss')
 

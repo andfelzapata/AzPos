@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, Row, Col } from 'reactstrap';
 import Lockout from './Lockout';
 
-class Sidebar extends React.Component {
+class Avatar extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -26,4 +26,4 @@ class Sidebar extends React.Component {
     }
 }
 
-export default Sidebar;
+export default Avatar;
