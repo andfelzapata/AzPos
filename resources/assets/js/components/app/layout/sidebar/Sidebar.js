@@ -1,9 +1,45 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
 import Avatar from '../../common/Avatar';
-import sidebarSections from '../../app/sidebarSections';
+import sidebarSections from './sidebarSections';
 import SidebarControlBtn from './SidebarControlBtn';
 import SidebarSection from './SidebarSection';
+import AdministrationSidebar from './AdministrationSidebar';
+import ChatSidebar from './ChatSidebar';
+import StatisticsSidebar from './StatisticsSidebar';
+import RemindersSidebar from './RemindersSidebar';
+
+[    {
+    name: "administration",
+    icon: "fa-tachometer",
+    initialPosition: 0,
+    left:0,
+    active: true
+},
+
+    {
+        name: "chat",
+        icon: "fa-comments",
+        initialPosition: 100,
+        left:100,
+        active: false
+    },
+
+    {
+        name: "statistics",
+        icon: "fa-pie-chart",
+        initialPosition: 200,
+        left:200,
+        active: false
+    },
+
+    {
+        name: "reminders",
+        icon: "fa-bell",
+        initialPosition: 300,
+        left:300,
+        active: false
+    }
+]
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -60,9 +96,27 @@ class Sidebar extends React.Component {
     }
 
     renderSidebarSection(sidebar, key) {
+
+        let ChildSidebar;
+
+        switch (sidebar.name) {
+            case "administration":
+                ChildSidebar = <AdministrationSidebar></AdministrationSidebar>;
+                break;
+            case "chat":
+                ChildSidebar = <ChatSidebar></ChatSidebar>;
+                break;
+            case "statistics":
+                ChildSidebar = <StatisticsSidebar></StatisticsSidebar>;
+                break;
+            case "reminders":
+                ChildSidebar = <RemindersSidebar></RemindersSidebar>;
+                break;
+        }
+
         return (
             <SidebarSection key={key} sidebar={key} sidebarName={sidebar.name} left={sidebar.left}>
-                {sidebar.name}
+                {ChildSidebar}
             </SidebarSection>
         );
     }
